@@ -51,10 +51,12 @@ def get_total_measuring_time():
 
 
 def measure_continuous(sequence=None):
+    print("Started measuring")
     global _kill
     while not _kill:
         measure(sequence)
     _kill = False
+    print("Stopped measuring")
 
 
 def clean():
