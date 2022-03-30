@@ -51,9 +51,9 @@ def get_total_measuring_time():
 
 
 def measure_continuous(sequence=None):
+    global _kill
     while not _kill:
         measure(sequence)
-    global _kill
     _kill = False
 
 
