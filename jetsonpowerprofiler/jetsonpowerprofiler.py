@@ -44,6 +44,11 @@ def get_total_measuring_time():
     return timedelta.total_seconds()
 
 
+def measure_continuous(sequence=None):
+    while True:
+        measure(sequence)
+
+
 def clean():
     global _SEQUENCES
     global _DATA_POINTS
