@@ -17,12 +17,6 @@ class _DataPoint:
         self.power = power
         self.sequence = sequence
 
-    def __float__(self):
-        return self.power
-
-    def __repr__(self):
-        return self.power
-
 
 def measure(sequence=None):
     now = datetime.now().time()  # time object
@@ -36,7 +30,11 @@ def measure(sequence=None):
 
 
 def get_average_power():
-    return sum(_DATA_POINTS) / len(_DATA_POINTS)
+    total = 0
+    for i in _DATA_POINTS:
+        i: _DataPoint
+        total += i.power
+    return total / len(_DATA_POINTS)
 
 
 if __name__ == "__main__":
