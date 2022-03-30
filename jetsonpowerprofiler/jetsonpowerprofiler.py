@@ -4,6 +4,12 @@ _POWER_SENSOR_ENDPOINT = "/sys/bus/i2c/drivers/ina3221x/6-0040/iio:device0//in_p
 
 _SEQUENCES = []
 _DATA_POINTS = []
+_kill = False
+
+
+def send_kill():
+    global _kill
+    _kill = True
 
 
 class _DataPoint:
@@ -45,8 +51,10 @@ def get_total_measuring_time():
 
 
 def measure_continuous(sequence=None):
-    while True:
+    while not _kill:
         measure(sequence)
+    global _kill
+    _kill = False
 
 
 def clean():
