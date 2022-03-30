@@ -19,7 +19,7 @@ class _DataPoint:
 
 
 def measure(sequence=None):
-    now = datetime.now().time()  # time object
+    now = datetime.now()
     file = open(_POWER_SENSOR_ENDPOINT)
     power = file.read()
     power = int(power)
@@ -36,6 +36,13 @@ def get_average_power():
         i: _DataPoint
         total += i.power
     return total / len(_DATA_POINTS)
+
+
+def get_total_measuring_time():
+    first: _DataPoint = _DATA_POINTS[0]
+    last: _DataPoint = _DATA_POINTS[-1]
+    timedelta = last.relative_time - first.relative_time
+    return timedelta.total_seconds()
 
 
 if __name__ == "__main__":
