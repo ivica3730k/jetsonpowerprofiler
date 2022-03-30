@@ -22,6 +22,7 @@ def measure(sequence=None):
     now = datetime.now().time()  # time object
     file = open(_POWER_SENSOR_ENDPOINT)
     power = file.read()
+    power = int(power)
     data_point = _DataPoint(now, power, sequence)
     if sequence:
         if sequence not in _SEQUENCES:
